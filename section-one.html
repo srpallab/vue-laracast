@@ -10,16 +10,18 @@
 	<div id="app">
 	    <h1 class="text-lg font-bold" v-show="completeJobs.length">TODO Works</h1>
 	    <ul>
-		<label v-for="job in completeJobs"
-		       @click="job.complete = true"
-		       :key="job.id"
-		       class="flex">
-		    <input type="checkbox"/>  <li class="ml-2" >{{ job.name }}</li>
+	      <label v-for="job in completeJobs" :key="job.id"  class="flex">
+		<input type="checkbox" v-model="job.complete" />
+		<li class="ml-2" >{{ job.name }}</li>
 		</label>
 	    </ul>
 	    <h1 class="text-lg font-bold" v-show="incompleteJobs.length">Completed Works</h1>
 	    <ul>
-		<li v-for="job in incompleteJobs">{{ job.name }}</li>
+	      <label v-for="job in incompleteJobs" class="flex" :key="job.id">
+		<input type="checkbox"/ v-model="job.complete">
+		<li class="ml-2">{{ job.name }}</li>
+	      </label>
+	      
 	    </ul>
 	</div>
 
