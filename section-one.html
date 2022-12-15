@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="h-full">
+    <head>
+	<meta charset="UTF-8"/>
+	<title>Section One</title>
+	<script src="https://unpkg.com/vue@3"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="h-full grid place-items-center">
+	<div id="app">
+	    <h1 class="text-lg font-bold" v-show="completeJobs.length">TODO Works</h1>
+	    <ul>
+		<label v-for="job in completeJobs"
+		       @click="job.complete = true"
+		       :key="job.id"
+		       class="flex">
+		    <input type="checkbox"/>  <li class="ml-2" >{{ job.name }}</li>
+		</label>
+	    </ul>
+	    <h1 class="text-lg font-bold" v-show="incompleteJobs.length">Completed Works</h1>
+	    <ul>
+		<li v-for="job in incompleteJobs">{{ job.name }}</li>
+	    </ul>
+	</div>
+
+	<script>
+	 let app = {
+	     data() {
+		 let jobs = [
+		     { name: "Learn Vue JS from Laracast", complete: false, id: 1 },
+		     { name: "Vue JS MAP With Firebase", complete: false, id: 2 },
+		     { name: "Domain Name verify", complete: false, id: 3 },
+		     { name: "Windmill downloads button remove", complete: false, id: 4},
+		     { name: "Vacsine card Download", complete: false, id: 5},
+		 ];
+		 return {jobs}
+	     },
+	     computed: {
+		 completeJobs(){
+		     return this.jobs.filter(jobs => !jobs.complete)
+		 },
+		 incompleteJobs(){
+		     return this.jobs.filter(jobs => jobs.complete)
+		 }
+	     }
+	 }
+	 Vue.createApp(app).mount('#app')
+	</script>
+    </body>
+</html>
